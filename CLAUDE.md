@@ -358,13 +358,14 @@ These are **not real projects**. Delete both folders when you create your first 
 
 ## Skills
 
-After setup, three skills are installed at `~/.claude/skills/`. They are available in every project.
+After setup, four skills are installed at `~/.claude/skills/`. They are available in every project.
 
 | Skill | Path | What it does | When to use |
 |-------|------|-------------|-------------|
 | **Gemini** | `~/.claude/skills/gemini/` | Second opinions from Google Gemini (different model family = different blind spots) | Fact-check, prompt stress-test, hypothesis falsification, architecture review |
 | **Brainstorm** | `~/.claude/skills/brainstorm/` | 3-round Claude x Gemini adversarial dialogue. Diverge -> Deepen -> Converge. | Multiple viable paths, strategic decisions, need to converge on one action |
 | **Design** | `~/.claude/skills/design/` | Design system lifecycle: extract -> palette -> tokens -> CSS -> audit -> VQA | Creating/auditing design systems, visual QA, token management |
+| **Skill Creator** | `~/.claude/skills/skill-creator/` | Create, test, and iterate on custom skills with eval framework | Building new skills, improving existing ones, running evals, optimizing skill descriptions |
 
 ### How to invoke
 
@@ -382,8 +383,9 @@ python3 ~/.claude/skills/gemini/gemini.py second-opinion "question" --context "c
 - `pip install google-genai` — required for Gemini and Brainstorm
 - `GOOGLE_API_KEY` in `.env` — required for Gemini and Brainstorm
 - Before calling: `set -a && source .env && set +a`
+- **Skill Creator** — no external deps. Uses `claude -p` CLI for running evals (included with Claude Code)
 
-**Decision rule:** One clear path + need validation -> Gemini `second-opinion`. Multiple viable paths + need to converge -> Brainstorm.
+**Decision rule:** One clear path + need validation -> Gemini `second-opinion`. Multiple viable paths + need to converge -> Brainstorm. Need a reusable workflow -> Skill Creator.
 
 See `.claude/rules/gemini.md` for detailed usage rules (auto-loaded every session).
 

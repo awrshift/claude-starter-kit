@@ -121,7 +121,7 @@ The `pre-compact.sh` hook ensures context is saved even when Claude's conversati
 
 ## Skills
 
-Three skills are included and installed globally (`~/.claude/skills/`) on first run:
+Four skills are included and installed globally (`~/.claude/skills/`) on first run:
 
 ### Gemini — Second Opinions
 
@@ -150,6 +150,14 @@ python3 ~/.claude/skills/gemini/gemini.py second-opinion "question" --context "c
 Full design token pipeline: extract from reference → OKLCH palette → tokens → CSS → audit → Visual QA.
 
 **Requires:** Python stdlib only (no external deps). Optional: Chrome MCP for visual QA.
+
+### Skill Creator — Build Your Own Skills
+
+The official Anthropic skill for creating, testing, and iterating on custom skills. Draft a skill, run test cases with automated eval framework, review results in a browser viewer, and improve until satisfied.
+
+**When to use:** You have a repeatable workflow you want to turn into a reusable skill. Or you want to improve an existing skill's quality and triggering accuracy.
+
+**Requires:** Python stdlib only. Uses `claude -p` CLI for running evals.
 
 ## Experiments
 
