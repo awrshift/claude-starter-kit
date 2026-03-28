@@ -358,12 +358,13 @@ These are **not real projects**. Delete both folders when you create your first 
 
 ## Skills
 
-After setup, four skills are installed at `~/.claude/skills/`. They are available in every project.
+After setup, five skills are installed at `~/.claude/skills/`. They are available in every project.
 
 | Skill | Path | What it does | When to use |
 |-------|------|-------------|-------------|
 | **Gemini** | `~/.claude/skills/gemini/` | Second opinions from Google Gemini (different model family = different blind spots) | Fact-check, prompt stress-test, hypothesis falsification, architecture review |
 | **Brainstorm** | `~/.claude/skills/brainstorm/` | 3-round Claude x Gemini adversarial dialogue. Diverge -> Deepen -> Converge. | Multiple viable paths, strategic decisions, need to converge on one action |
+| **AWRSHIFT** | `~/.claude/skills/awrshift/` | Adaptive decision framework — one dynamic flow with user checkpoints and Gemini gates | Non-trivial decisions, experiments, feature planning, architecture choices |
 | **Design** | `~/.claude/skills/design/` | Design system lifecycle: extract -> palette -> tokens -> CSS -> audit -> VQA | Creating/auditing design systems, visual QA, token management |
 | **Skill Creator** | `~/.claude/skills/skill-creator/` | Create, test, and iterate on custom skills with eval framework | Building new skills, improving existing ones, running evals, optimizing skill descriptions |
 

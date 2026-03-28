@@ -68,11 +68,20 @@ your-project/
 │   ├── README.md                    # How experiments work
 │   ├── 001-landing-page-redesign.md # Example: completed experiment
 │   └── 002-payment-provider.md      # Example: in-progress experiment
-└── projects/
-    ├── example-webapp/              # Example project (delete when ready)
-    │   └── JOURNAL.md               # Tasks, decisions, status
-    └── example-saas/                # Example project (delete when ready)
-        └── JOURNAL.md               # Tasks, decisions, status
+├── projects/
+│   ├── example-webapp/              # Example project (delete when ready)
+│   │   └── JOURNAL.md               # Tasks, decisions, status
+│   └── example-saas/                # Example project (delete when ready)
+│       └── JOURNAL.md               # Tasks, decisions, status
+└── global/                          # Installed to ~/.claude/ on first run
+    ├── skills/
+    │   ├── gemini/                   # Second opinions from Google Gemini
+    │   ├── brainstorm/              # 3-round Claude x Gemini dialogue
+    │   ├── awrshift/                # Adaptive decision framework
+    │   ├── design/                  # Design system lifecycle
+    │   └── skill-creator/           # Build and test custom skills
+    └── rules/
+        └── gemini.md                # Gemini usage rules (auto-loaded)
 ```
 
 ## How It Works
@@ -121,7 +130,7 @@ The `pre-compact.sh` hook ensures context is saved even when Claude's conversati
 
 ## Skills
 
-Four skills are included and installed globally (`~/.claude/skills/`) on first run:
+Five skills are included and installed globally (`~/.claude/skills/`) on first run:
 
 ### Gemini — Second Opinions
 
@@ -151,6 +160,20 @@ Full design token pipeline: extract from reference → OKLCH palette → tokens 
 
 **Requires:** Python stdlib only (no external deps). Optional: Chrome MCP for visual QA.
 
+### AWRSHIFT — Adaptive Decision Framework
+
+One dynamic flow for non-trivial decisions: research before building, metrics before planning, factcheck before testing. User controls depth at every step via structured choices.
+
+```
+IDENTIFY → RESEARCH → EVALUATE-DESIGN → HYPOTHESIZE → PLAN → FACTCHECK → TEST → DECIDE → [IMPLEMENT]
+```
+
+**When to use:** Non-trivial decisions, experiments, feature planning, architecture choices — anything with unknowns.
+
+**Includes:** Built-in Gemini checks at 3 phases (rubric, falsification, factcheck). Falls back to self-check if Gemini skill not installed.
+
+**Requires:** No external deps. Enhanced with Gemini skill (optional).
+
 ### Skill Creator — Build Your Own Skills
 
 The official Anthropic skill for creating, testing, and iterating on custom skills. Draft a skill, run test cases with automated eval framework, review results in a browser viewer, and improve until satisfied.
@@ -161,10 +184,10 @@ The official Anthropic skill for creating, testing, and iterating on custom skil
 
 ## Experiments
 
-For decisions that need research before building, use experiments. Each experiment follows a structured cycle:
+For decisions that need research before building, use the AWRSHIFT skill or experiments directly. Each experiment follows a structured cycle:
 
 ```
-IDENTIFY → RESEARCH → HYPOTHESIZE → PLAN → IMPLEMENT → EVALUATE → DECIDE
+IDENTIFY → RESEARCH → EVALUATE-DESIGN → PLAN → FACTCHECK → TEST → DECIDE
 ```
 
 See `experiments/README.md` for details. Two example experiments are included — one completed (landing page A/B test) and one in-progress (payment provider comparison).
