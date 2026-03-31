@@ -115,7 +115,7 @@ Each metric needs: name, how to measure, target value, why it matters.
 **Step 2 — Gemini rubric check:**
 Send metrics to Gemini for independent review — catches self-preference bias and edge case vulnerabilities.
 ```bash
-python3 ~/.claude/skills/gemini/gemini.py second-opinion \
+python3 .claude/skills/gemini/gemini.py second-opinion \
   "Review these success metrics for [problem]. Check for: self-preference bias, missing edge cases, unrealistic targets, metrics that can be gamed. Metrics: [table]" \
   --save experiments/{NNN}/gemini-metrics-review.md
 ```
@@ -157,7 +157,7 @@ Name each hypothesis (H1, H2, H3) with one-sentence description, expected outcom
 **Gemini falsification (standard/deep with 2+ hypotheses):**
 Send hypotheses to Gemini for adversarial challenge — different model family catches blind spots.
 ```bash
-python3 ~/.claude/skills/gemini/gemini.py second-opinion \
+python3 .claude/skills/gemini/gemini.py second-opinion \
   "Given these hypotheses for [problem]: [H1, H2, H3]. For EACH: give 3 concrete scenarios where it fails or where an alternative outperforms. Also: what are we NOT considering?" \
   --save experiments/{NNN}/gemini-hypotheses-review.md
 ```
@@ -206,7 +206,7 @@ Verify plan against original context and research BEFORE execution.
 **Step 2 — Gemini cross-check (standard/deep — mandatory):**
 Different model family catches blind spots Claude misses. Write plan summary + context to temp file, send to Gemini:
 ```bash
-python3 ~/.claude/skills/gemini/gemini.py second-opinion @factcheck-prompt.txt \
+python3 .claude/skills/gemini/gemini.py second-opinion @factcheck-prompt.txt \
   --save experiments/{NNN}/gemini-factcheck.md
 ```
 Prompt pattern: "Here's our plan for [problem]. Context: [IDENTIFY summary + RESEARCH findings]. Plan: [tasks]. Check for: missed risks, wrong assumptions, implementation complexity we're underestimating, better alternatives we haven't considered."
@@ -370,7 +370,7 @@ Continue from highest existing number in `experiments/`. Check before creating.
 ### gemini (built-in)
 Gemini second-opinion is embedded in 3 phases: EVALUATE-DESIGN (rubric check), HYPOTHESIZE (falsification), FACTCHECK (cross-check). See each phase for exact prompts.
 ```bash
-python3 ~/.claude/skills/gemini/gemini.py second-opinion "prompt" --save result.md
+python3 .claude/skills/gemini/gemini.py second-opinion "prompt" --save result.md
 ```
 If gemini skill is not installed, fall back to self-check only and note it in experiment documentation.
 

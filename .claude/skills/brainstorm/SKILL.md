@@ -82,7 +82,7 @@ Output format per technology:
 
 **Flash call:**
 ```bash
-python3 ~/.claude/skills/gemini/gemini.py ask @/tmp/brainstorm-${AGENT}-ground.txt \
+python3 .claude/skills/gemini/gemini.py ask @/tmp/brainstorm-${AGENT}-ground.txt \
   --grounded --save /tmp/brainstorm-${AGENT}-ground-response.md
 ```
 
@@ -139,7 +139,7 @@ so we can verify it before Round 2.
 
 **Mid-round verification** (only if R1 introduced new technologies):
 ```bash
-python3 ~/.claude/skills/gemini/gemini.py ask \
+python3 .claude/skills/gemini/gemini.py ask \
   "Verify these technologies: [new tech from R1]. Current version, pricing, license, compatibility with [our stack]." \
   --grounded --save /tmp/brainstorm-${AGENT}-r1-verify.md
 ```
@@ -275,7 +275,7 @@ Where `{agent}` is the agent's identifier from the project (e.g., `rnd`, `cmo`, 
 
 ```bash
 set -a && source "$PROJECT_ENV" && set +a
-SCRIPT=~/.claude/skills/gemini/gemini.py
+SCRIPT=.claude/skills/gemini/gemini.py
 AGENT="cmo"  # Replace with your agent ID: rnd, cmo, seo-geo, qa
 
 # Phase 0.5: Flash-Lite grounded research

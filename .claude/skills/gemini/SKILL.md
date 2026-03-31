@@ -23,7 +23,7 @@ set -a && source .env && set +a
 ## Quick Reference
 
 ```bash
-SCRIPT=~/.claude/skills/gemini/gemini.py
+SCRIPT=.claude/skills/gemini/gemini.py
 
 # Quick question (Gemini 3 Flash, cheap + fast)
 python3 $SCRIPT ask "prompt"

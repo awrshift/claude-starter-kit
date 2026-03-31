@@ -51,23 +51,15 @@ Execute these steps using the answers from Phase 1.
 
 If this directory is not a git repo yet, run `git init` and create initial commit with all files (so scaffolding is preserved in history).
 
-#### Step 2: Global settings
+#### Step 2: Verify skills are in place
 
-Check if `~/.claude/CLAUDE.md` exists:
-- **If it does NOT exist** — copy `global/CLAUDE.md` to `~/.claude/CLAUDE.md`
-- **If it exists** — skip (don't overwrite the user's existing settings)
+Skills are already included in `.claude/skills/` (project-local, no global installation needed):
+- `.claude/skills/gemini/` — Second opinions from Google Gemini
+- `.claude/skills/brainstorm/` — Claude x Gemini adversarial dialogue
+- `.claude/skills/awrshift/` — Adaptive decision framework
+- `.claude/skills/skill-creator/` — Build and test custom skills
 
-#### Step 3: Install global skills and rules
-
-**Skills** — copy from `global/skills/` to `~/.claude/skills/`:
-- For each skill directory in `global/skills/`:
-  - **If `~/.claude/skills/<name>/` does NOT exist** — copy the entire skill directory
-  - **If it exists** — skip (don't overwrite existing skills)
-- If user answered "No" to Gemini in Q5 — still copy the skill files (no harm), but note it's not configured yet
-
-**Rules** — copy from `global/rules/` to `.claude/rules/` (project-level):
-- For each rule file in `global/rules/`:
-  - Copy to `.claude/rules/` (these are project-specific, not global)
+Rules are already in `.claude/rules/`. No copying needed.
 
 #### Step 4: Personalize CLAUDE.md
 
@@ -170,7 +162,6 @@ chmod +x .claude/hooks/session-start.sh .claude/hooks/pre-compact.sh
 #### Step 8: Clean up ALL scaffolding
 
 Delete these files/directories (they were only needed for setup and GitHub repo):
-- `global/` directory (entire folder — skills already copied)
 - `README.md` (GitHub repo readme, not needed locally)
 - `.github/` directory (repo images, not needed locally)
 - `projects/example-webapp/` (demo project)
@@ -337,23 +328,23 @@ These are **not real projects**. Delete both folders when you create your first 
 
 ## Skills
 
-After setup, four skills are installed at `~/.claude/skills/`. They are available in every project.
+After setup, four skills are installed at `.claude/skills/`. They are available in every project.
 
 | Skill | Path | What it does | When to use |
 |-------|------|-------------|-------------|
-| **Gemini** | `~/.claude/skills/gemini/` | Second opinions from Google Gemini (different model family = different blind spots) | Fact-check, prompt stress-test, hypothesis falsification, architecture review |
-| **Brainstorm** | `~/.claude/skills/brainstorm/` | 3-round Claude x Gemini adversarial dialogue. Diverge -> Deepen -> Converge. | Multiple viable paths, strategic decisions, need to converge on one action |
-| **AWRSHIFT** | `~/.claude/skills/awrshift/` | Adaptive decision framework — one dynamic flow with user checkpoints and Gemini gates | Non-trivial decisions, experiments, feature planning, architecture choices |
-| **Skill Creator** | `~/.claude/skills/skill-creator/` | Create, test, and iterate on custom skills with eval framework | Building new skills, improving existing ones, running evals, optimizing skill descriptions |
+| **Gemini** | `.claude/skills/gemini/` | Second opinions from Google Gemini (different model family = different blind spots) | Fact-check, prompt stress-test, hypothesis falsification, architecture review |
+| **Brainstorm** | `.claude/skills/brainstorm/` | 3-round Claude x Gemini adversarial dialogue. Diverge -> Deepen -> Converge. | Multiple viable paths, strategic decisions, need to converge on one action |
+| **AWRSHIFT** | `.claude/skills/awrshift/` | Adaptive decision framework — one dynamic flow with user checkpoints and Gemini gates | Non-trivial decisions, experiments, feature planning, architecture choices |
+| **Skill Creator** | `.claude/skills/skill-creator/` | Create, test, and iterate on custom skills with eval framework | Building new skills, improving existing ones, running evals, optimizing skill descriptions |
 
 ### How to invoke
 
 ```bash
 # Gemini — quick question
-python3 ~/.claude/skills/gemini/gemini.py ask "your question"
+python3 .claude/skills/gemini/gemini.py ask "your question"
 
 # Gemini — second opinion (deeper analysis)
-python3 ~/.claude/skills/gemini/gemini.py second-opinion "question" --context "context"
+python3 .claude/skills/gemini/gemini.py second-opinion "question" --context "context"
 
 # Brainstorm — see SKILL.md for full CLI reference
 ```
